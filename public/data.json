@@ -1,0 +1,94 @@
+[
+      {
+        "id": 1,
+        "name": "Introduction to Painting",
+        "instructor": {
+          "id": 1,
+          "name": "Lisa Johnson",
+          "image": "image_link_1",
+          "email": "lisa.johnson@example.com",
+          "takenClasses": 6
+        },
+        "image": "image_link_1",
+        "availableSeats": 15,
+        "price": "$150",
+        "ratings": "4.8"
+      },
+      {
+        "id": 2,
+        "name": "Digital Illustration Masterclass",
+        "instructor": {
+          "id": 2,
+          "name": "Mark Thompson",
+          "image": "image_link_2",
+          "email": "mark.thompson@example.com",
+          "takenClasses": 2
+        },
+        "image": "image_link_2",
+        "availableSeats": 10,
+        "price": "$200",
+        "ratings": "4.9"
+      },
+      {
+        "id": 3,
+        "name": "Sculpting Techniques Workshop",
+        "instructor": {
+          "id": 3,
+          "name": "Sarah Miller",
+          "image": "image_link_3",
+          "email": "sarah.miller@example.com",
+          "takenClasses": 3
+        },
+        "image": "image_link_3",
+        "availableSeats": 8,
+        "price": "$180",
+        "ratings": "4.7"
+      },
+      {
+        "id": 4,
+        "name": "Photography Fundamentals",
+        "instructor": {
+          "id": 4,
+          "name": "David Martinez",
+          "image": "image_link_4",
+          "email": "david.martinez@example.com",
+          "takenClasses": 4
+        },
+        "image": "image_link_4",
+        "availableSeats": 20,
+        "price": "$120",
+        "ratings": "4.6"
+      },
+      {
+        "id": 5,
+        "name": "Calligraphy and Hand Lettering",
+        "instructor": {
+          "id": 5,
+          "name": "Emily Collins",
+          "image": "image_link_5",
+          "email": "emily.collins@example.com",
+          "takenClasses": 5
+        },
+        "image": "image_link_5",
+        "availableSeats": 12,
+        "price": "$100",
+        "ratings": "4.9"
+      },
+      {
+        "id": 6,
+        "name": "Abstract Art Workshop",
+        "instructor": {
+          "id": 6,
+          "name": "Michael Adams",
+          "image": "image_link_6",
+          "email": "michael.adams@example.com",
+          "takenClasses": 6
+        },
+        "image": "image_link_6",
+        "availableSeats": 15,
+        "price": "$160",
+        "ratings": "4.5"
+      }
+    ]
+  
+  

@@ -21,7 +21,7 @@
     "instructor": {
       "id": 2,
       "name": "Mark Thompson",
-      "image": "image_link_2",
+      "image": "https://i.ibb.co/VNtynWY/art.jpg",
       "email": "mark.thompson@example.com",
       "takenClasses": 2
     },
@@ -37,7 +37,7 @@
     "instructor": {
       "id": 3,
       "name": "Sarah Miller",
-      "image": "https://i.ibb.co/cDvP2L1/t2.jpg",
+      "image": "https://i.ibb.co/CVMQW0q/call1.jpg",
       "email": "sarah.miller@example.com",
       "takenClasses": 3
     },
@@ -53,7 +53,7 @@
     "instructor": {
       "id": 4,
       "name": "David Martinez",
-      "image": "image_link_4",
+      "image": "https://i.ibb.co/VNtynWY/art.jpg",
       "email": "david.martinez@example.com",
       "takenClasses": 4
     },

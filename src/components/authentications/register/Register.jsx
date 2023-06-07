@@ -1,24 +1,37 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 
 const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-const {createUser} = useContext(AuthContext);
+const {createUser, updateUser} = useContext(AuthContext);
+const navigate = useNavigate();
+
 
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
     .then(result => {
       const loggedUser = result.user;
+      
       console.log(loggedUser);
+      updateUser(data.name, data.photo)
+      .then(() => {
+        console.log('user updated')
+        reset();
+        toast.success("Account Created Successfully!");
+        navigate('/')
+      })
+      .catch(error => console.log(error))
     })
   };
 

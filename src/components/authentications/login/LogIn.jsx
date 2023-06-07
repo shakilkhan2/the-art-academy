@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/authProvider/AuthProvider";
@@ -11,18 +12,27 @@ const LogIn = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const {signIn} = useContext(AuthContext);
+  const { signIn, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  if (user?.uid) {
+    return <Navigate to={from}></Navigate>;
+  }
 
   const onSubmit = (data) => {
     console.log(data);
-    signIn(data.email, data.password)
-    .then(result => {
-      const user = result.user;
-      console.log(user);
-    })
+    signIn(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      reset();
+      navigate(from, { replace: true });
+      toast.success("Logged in Successfully!");
+    });
   };
 
   return (
@@ -51,23 +61,22 @@ const LogIn = () => {
           />{" "}
           <br />
           <div className="relative">
-  <input
-    className="mx-auto pl-2 py-3 w-[50%] border rounded-lg border-amber-500"
-    type={showPassword ? "text" : "password"}
-    name="password"
-    {...register("password")}
-    id=""
-    placeholder="Password"
-    required
-  />
-  <button
-    className="absolute right-40 top-1/2 transform -translate-y-1/2 focus:outline-none"
-    onClick={() => setShowPassword(!showPassword)}
-  >
-    {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-  </button>
-</div>
-
+            <input
+              className="mx-auto pl-2 py-3 w-[50%] border rounded-lg border-amber-500"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              {...register("password")}
+              id=""
+              placeholder="Password"
+              required
+            />
+            <button
+              className="absolute right-40 top-1/2 transform -translate-y-1/2 focus:outline-none"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </button>
+          </div>
           <br />
           {/* {error.isError && (
             <p className="mt-4 text-red-600 text-xs text-center">

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Toaster } from "react-hot-toast";
 import './index.css'
 import {
   
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
    <HelmetProvider>
    <Container>
     <RouterProvider router={router} />
+    <Toaster />
     </Container>
    </HelmetProvider>
    </AuthProvider>

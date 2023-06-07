@@ -1,20 +1,68 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { BiUser } from "react-icons/bi";
+import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   const navOptions = (
     <>
       <li>
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/class">Classes</Link>
+        <Link onClick={handleLogOut} to="/class">
+          Classes
+        </Link>
       </li>
       <li>
         <Link to="/instructor">Instructors</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
+
+      {user ? (
+        <>
+          <li>
+            <Link onClick={handleLogOut}>Logout</Link>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </>
+      )}
+
+      {user?.uid && (
+        <>
+          {" "}
+          {user?.photoURL ? (
+            
+            <span className="mr-12" title={user?.displayName}>
+              
+              <img
+                className="h-8 w-8 rounded-full"
+                src={user?.photoURL}
+                alt=""
+              />
+            </span>
+          ) : (
+            <span
+              title={user?.displayName}
+              className="h-8 w-8 border border-gray-600 rounded-full flex justify-center mx-3 items-center text-2xl "
+            >
+              <BiUser />
+            </span>
+          )}
+        </>
+      )}
     </>
   );
 

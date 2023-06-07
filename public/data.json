@@ -5,7 +5,7 @@
     "instructor": {
       "id": 1,
       "name": "Lisa Johnson",
-      "image": "image_link_1",
+      "image": "https://i.ibb.co/nBRN5Sy/t1.jpg",
       "email": "lisa.johnson@example.com",
       "takenClasses": 6
     },
@@ -37,7 +37,7 @@
     "instructor": {
       "id": 3,
       "name": "Sarah Miller",
-      "image": "image_link_3",
+      "image": "https://i.ibb.co/cDvP2L1/t2.jpg",
       "email": "sarah.miller@example.com",
       "takenClasses": 3
     },
@@ -69,7 +69,7 @@
     "instructor": {
       "id": 5,
       "name": "Emily Collins",
-      "image": "image_link_5",
+      "image": "https://i.ibb.co/CVMQW0q/call1.jpg",
       "email": "emily.collins@example.com",
       "takenClasses": 5
     },
@@ -85,7 +85,7 @@
     "instructor": {
       "id": 6,
       "name": "Michael Adams",
-      "image": "image_link_6",
+      "image": "https://i.ibb.co/nBRN5Sy/t1.jpg",
       "email": "michael.adams@example.com",
       "takenClasses": 6
     },

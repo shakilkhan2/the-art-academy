@@ -20,7 +20,7 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="navbar bg-base-100  ">
+      <div className="navbar bg-base-100  fixed z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -50,7 +50,7 @@ const NavBar = () => {
             <p className="text-lg text-amber-400">
               The{" "}
               <span className="text-2xl font-bold text-amber-500">
-                Art School
+                Art Academy
               </span>
             </p>
           </Link>

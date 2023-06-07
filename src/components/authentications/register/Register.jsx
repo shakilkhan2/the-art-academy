@@ -1,9 +1,13 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 
 const Register = () => {
     return (
         <div>
+          <Helmet>
+            <title>Registration | The Art Academy</title>
+          </Helmet>
              <form
     //   onSubmit={handleRegister}
       className="bg-amber-100 border rounded-lg border-amber-500 w-[50%] mx-auto py-12 my-8 shadow-2xl"

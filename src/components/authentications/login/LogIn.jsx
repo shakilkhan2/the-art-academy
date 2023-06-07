@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { Helmet } from "react-helmet-async";
 
 
 const LogIn = () => {
     return (
         <div className="">
+          <Helmet>
+            <title>Login | The Art Academy</title>
+          </Helmet>
             <form
     //   onSubmit={handleLogIn}
       className="bg-amber-100 border rounded-lg border-amber-500 w-[50%] mx-auto py-12 my-8 shadow-2xl"

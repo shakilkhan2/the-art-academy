@@ -1,9 +1,11 @@
+
+
 const Classes = () => {
-  return (
-    <div>
-      <h1>there will be classes</h1>
-    </div>
-  );
+    return (
+        <div>
+          <h1>classes</h1>  
+        </div>
+    );
 };
 
 export default Classes;

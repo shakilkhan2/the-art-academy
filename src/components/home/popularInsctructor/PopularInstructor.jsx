@@ -1,15 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loader from "../../shared/loader/Loader";
 
 
 const PopularInstructor = () => {
     const [instructors, setInstructors] = useState([]);
+    const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     axios.get("http://localhost:5000/allInfo").then((res) => {
       setInstructors(res.data);
+      setLoading(false);
     });
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
     return (
         <div>

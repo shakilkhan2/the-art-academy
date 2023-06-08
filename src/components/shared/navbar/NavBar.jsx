@@ -28,15 +28,18 @@ const NavBar = () => {
       <li>
         <Link to="/instructor">Instructors</Link>
       </li>
-      <li>
-        <Link className="absulate" to="/dashboard"><div >
+      {/* <li>
+        <Link className="absulate" to="/dashboard/mycart"><div > Dashboard
   <FaShoppingCart/>
   <div className="relative -top-6 text-amber-500  font-semibold left-3">{cart?.length || 0}</div>
 </div></Link>
-      </li>
+      </li> */}
 
       {user ? (
         <>
+        <li>
+            <Link to="/dashboard/mycart">Dashboard</Link>
+          </li>
           <li>
             <Link onClick={handleLogOut}>Logout</Link>
           </li>

@@ -8,6 +8,9 @@ import Teachers from "../components/teachers/Teachers";
 import LogIn from "../components/authentications/login/LogIn";
 import Register from "../components/authentications/register/Register";
 import DashBoard from "../layout/DashBoard";
+import MyCart from "../components/dashboard/MyCart/MyCart";
+import ErrorPage from "../error/ErrorPage";
+
 
 
  export const router = createBrowserRouter([
@@ -41,7 +44,14 @@ import DashBoard from "../layout/DashBoard";
       path: "/dashboard",
       element: <DashBoard/>,
       children: [
-        
+        {
+          path: "/dashboard/mycart",
+          element: <MyCart/>
+        }
       ]
+    },
+    {
+      path: '*',
+    element: <ErrorPage/>
     }
   ]);

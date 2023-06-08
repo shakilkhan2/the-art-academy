@@ -6,7 +6,7 @@ const PopularInstructor = () => {
     const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    axios.get("data.json").then((res) => {
+    axios.get("http://localhost:5000/allInfo").then((res) => {
       setInstructors(res.data);
     });
   }, []);

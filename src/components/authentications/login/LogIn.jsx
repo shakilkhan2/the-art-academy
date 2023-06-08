@@ -33,6 +33,7 @@ const LogIn = () => {
       navigate(from, { replace: true });
       toast.success("Logged in Successfully!");
     });
+    
   };
 
   return (

@@ -3,10 +3,12 @@ import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import useCart from "../../hooks/useCart";
 
 const Courses = ({ course }) => {
     const {_id, name, image, price, } = course
   const { user } = useContext(AuthContext);
+  const [, refetch] = useCart()
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -25,6 +27,7 @@ const Courses = ({ course }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            refetch()
             toast.success("Added Successfully!");
           }
         });

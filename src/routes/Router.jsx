@@ -7,6 +7,7 @@ import Classes from "../components/classes/Classes";
 import Teachers from "../components/teachers/Teachers";
 import LogIn from "../components/authentications/login/LogIn";
 import Register from "../components/authentications/register/Register";
+import DashBoard from "../layout/DashBoard";
 
 
  export const router = createBrowserRouter([
@@ -34,6 +35,13 @@ import Register from "../components/authentications/register/Register";
           path: '/register',
           element: <Register/>
         }
-      ]
+      ],
     },
+    {
+      path: "/dashboard",
+      element: <DashBoard/>,
+      children: [
+        
+      ]
+    }
   ]);

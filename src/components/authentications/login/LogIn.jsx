@@ -15,6 +15,9 @@ const LogIn = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const {googleSignIn} = useContext(AuthContext);
+
+  // const [error, setError] = useState({ isError: false, message: "" });
 
   const { signIn, user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -23,6 +26,14 @@ const LogIn = () => {
   if (user?.uid) {
     return <Navigate to={from}></Navigate>;
   }
+
+const handleGoogleSignIn = () => {
+  googleSignIn()
+  .then(result => {
+    const loggedUser =result.user;
+    console.log(loggedUser)
+  })
+}
 
   const onSubmit = (data) => {
     console.log(data);
@@ -96,7 +107,7 @@ const LogIn = () => {
             </small>
           </p>
           <div
-            //   onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignIn}
             className="flex items-center cursor-pointer justify-around  border rounded-lg  px-8 py-3 mt-8 font-semibold  text-white bg-amber-950 w-[50%] mx-auto"
           >
             <div>

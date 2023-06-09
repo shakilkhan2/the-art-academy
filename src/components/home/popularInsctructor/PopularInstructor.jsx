@@ -21,7 +21,7 @@ const PopularInstructor = () => {
 
     return (
         <div>
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {instructors.map((instructor) => (
         <div className="border bg-slate-100 hover:shadow-2xl my-8 rounded-md" key={instructor.id}>
           <div className="bg-amber-100">

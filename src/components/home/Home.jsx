@@ -10,9 +10,9 @@ const Home = () => {
         <div>
             <Helmet><title>Home | The Art Academy</title></Helmet>
            <Slider/>
-           <h1 className="text-4xl font-bold text-center text-amber-950">Popular Classes</h1>
+           <h1 className="text-4xl font-bold text-center text-amber-600">Popular Classes</h1>
            <PopularClasses/>
-           <h1 className="text-4xl font-bold text-center text-amber-950">Popular Instructors</h1>
+           <h1 className="text-4xl font-bold text-center text-amber-600">Popular Instructors</h1>
            <PopularInstructor/>
         </div>
     );

@@ -13,26 +13,38 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-const {createUser, updateUser} = useContext(AuthContext);
-const navigate = useNavigate();
-
+  const { createUser, updateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
-    createUser(data.email, data.password)
-    .then(result => {
+    // console.log(data);
+    createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
-      
       console.log(loggedUser);
+
       updateUser(data.name, data.photo)
-      .then(() => {
-        console.log('user updated')
-        reset();
-        toast.success("Account Created Successfully!");
-        navigate('/')
-      })
-      .catch(error => console.log(error))
-    })
+        .then(() => {
+          // console.log('user updated')
+          
+          const saveUser = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                toast.success("Account Created Successfully!");
+                navigate("/");
+              }
+            });
+        })
+        .catch((error) => console.log(error));
+    });
   };
 
   return (
@@ -76,8 +88,7 @@ const navigate = useNavigate();
             {...register("password", {
               required: true,
               minLength: 6,
-              pattern: /(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}/
-              
+              pattern: /(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}/,
             })}
             id=""
             placeholder="password"
@@ -120,45 +131,29 @@ const navigate = useNavigate();
               </span>
             </small>
           </p>
-         
           {errors.email && (
-  <div className="text-red-500">
-    <small>Email is required</small>
-  </div>
-)}
-
-
-
-{errors.password?.type === "required" && (
-  <div className="text-red-500">
-    <small>Password is required.</small>
-  </div>
-)}
-
-{errors.password?.type === "minLength" && (
-  <div className="text-red-500">
-    <small>
-      The password should be at least 6 characters long.
-    </small>
-  </div>
-)}
-
-{errors.password?.type === "pattern" && (
-  <div className="text-red-500">
-    <small>
-      The password must contain at least one uppercase letter and one special character.
-    </small>
-  </div>
-)}
-
-
-
-
-
-
-
-
-
+            <div className="text-red-500">
+              <small>Email is required</small>
+            </div>
+          )}
+          {errors.password?.type === "required" && (
+            <div className="text-red-500">
+              <small>Password is required.</small>
+            </div>
+          )}
+          {errors.password?.type === "minLength" && (
+            <div className="text-red-500">
+              <small>The password should be at least 6 characters long.</small>
+            </div>
+          )}
+          {errors.password?.type === "pattern" && (
+            <div className="text-red-500">
+              <small>
+                The password must contain at least one uppercase letter and one
+                special character.
+              </small>
+            </div>
+          )}
         </div>
       </form>
     </div>

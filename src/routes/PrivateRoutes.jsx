@@ -1,23 +1,16 @@
-
-import { Navigate, useLocation } from "react-router-dom";
-
-import { AuthContext } from "../providers/AuthProvider";
 import { useContext } from "react";
-import Loader from "../components/shared/loader/Loader";
+import { AuthContext } from "../providers/authProvider/AuthProvider";
+import { Navigate } from "react-router-dom";
 
-const PrivateRoutes = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
-  const location = useLocation();
-  console.log(location);
+// TODO: is't working properly, have to fix bug
 
-  if (loading) {
-    return <Loader/>;
-  }
-
-  if (user) {
+const PrivateRoutes = ({children}) => {
+  const {user} = useContext(AuthContext);
+  console.log(user);
+  if(user){
     return children;
   }
-  return <Navigate state={{ from: location }} to="/login" replace />;
+  return <Navigate to='/login'></Navigate>
 };
 
 export default PrivateRoutes;

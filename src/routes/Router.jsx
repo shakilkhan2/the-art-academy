@@ -12,6 +12,9 @@ import MyCart from "../components/dashboard/MyCart/MyCart";
 import ErrorPage from "../error/ErrorPage";
 import EnrolledClasses from "../components/dashboard/enrolledClass/EnrolledClasses";
 import PaymentHistory from "../components/dashboard/paymentHistory/PaymentHistory";
+import PrivateRoutes from "./PrivateRoutes";
+import ManageClasses from "../components/dashboard/manageClasses/ManageClasses";
+import ManageUsers from "../components/dashboard/manageUsers/ManageUsers";
 
 
 
@@ -26,7 +29,7 @@ import PaymentHistory from "../components/dashboard/paymentHistory/PaymentHistor
         },
         {
             path: '/class',
-            element: <Classes/>
+            element:<Classes/>
         },
         {
             path: '/instructor',
@@ -44,7 +47,7 @@ import PaymentHistory from "../components/dashboard/paymentHistory/PaymentHistor
     },
     {
       path: "/dashboard",
-      element: <DashBoard/>,
+      element: <PrivateRoutes><DashBoard/></PrivateRoutes>,
       children: [
         {
           path: "/dashboard/mycart",
@@ -57,6 +60,14 @@ import PaymentHistory from "../components/dashboard/paymentHistory/PaymentHistor
         {
           path: '/dashboard/payment_history',
           element: <PaymentHistory/>
+        },
+        {
+          path: '/dashboard/manage_classes',
+          element: <ManageClasses/>
+        },
+        {
+          path: '/dashboard/manage_users',
+          element: <ManageUsers/>
         }
       ]
     },

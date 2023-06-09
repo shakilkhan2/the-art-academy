@@ -4,6 +4,7 @@ import { GiTeacher } from "react-icons/Gi";
 import { MdClass, MdHome, MdOutlineClass, MdPayment, MdVerifiedUser } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../components/hooks/useCart";
+import { Helmet } from "react-helmet-async";
 
 const DashBoard = () => {
   const [cart] = useCart();
@@ -12,6 +13,9 @@ const DashBoard = () => {
 
   return (
     <div className="drawer lg:drawer-open">
+      <Helmet>
+        <title>Dashboard | The Art Academy</title>
+      </Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
         <Outlet />

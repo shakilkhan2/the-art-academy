@@ -10,6 +10,8 @@ import Register from "../components/authentications/register/Register";
 import DashBoard from "../layout/DashBoard";
 import MyCart from "../components/dashboard/MyCart/MyCart";
 import ErrorPage from "../error/ErrorPage";
+import EnrolledClasses from "../components/dashboard/enrolledClass/EnrolledClasses";
+import PaymentHistory from "../components/dashboard/paymentHistory/PaymentHistory";
 
 
 
@@ -47,6 +49,14 @@ import ErrorPage from "../error/ErrorPage";
         {
           path: "/dashboard/mycart",
           element: <MyCart/>
+        },
+        {
+          path:'/dashboard/enrolled',
+          element: <EnrolledClasses/>
+        },
+        {
+          path: '/dashboard/payment_history',
+          element: <PaymentHistory/>
         }
       ]
     },

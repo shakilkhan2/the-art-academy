@@ -11,7 +11,7 @@
     },
     "image": "https://i.ibb.co/HqLXwFF/fun.jpg",
     "availableSeats": 15,
-    "price": "$150",
+    "price": 150,
     "ratings": "4.8",
     "description": "Learn the basics of painting and unleash your creativity with this introductory course."
   },
@@ -27,7 +27,7 @@
     },
     "image": "https://i.ibb.co/zHsD2fT/dwaing.jpg",
     "availableSeats": 10,
-    "price": "$200",
+    "price": 200,
     "ratings": "4.9",
     "description": "Master the art of digital illustration and bring your artistic visions to life on the screen."
   },
@@ -43,7 +43,7 @@
     },
     "image": "https://i.ibb.co/HqLXwFF/fun.jpg",
     "availableSeats": 8,
-    "price": "$180",
+    "price": 180,
     "ratings": "4.7",
     "description": "Explore various sculpting techniques and create stunning three-dimensional artworks."
   },
@@ -59,7 +59,7 @@
     },
     "image": "https://i.ibb.co/HqLXwFF/fun.jpg",
     "availableSeats": 20,
-    "price": "$120",
+    "price": 120,
     "ratings": "4.6",
     "description": "Learn the essentials of photography, from camera settings to composition, and capture amazing images."
   },
@@ -75,7 +75,7 @@
     },
     "image": "https://i.ibb.co/HqLXwFF/fun.jpg",
     "availableSeats": 12,
-    "price": "$100",
+    "price": 100,
     "ratings": "4.9",
     "description": "Discover the art of calligraphy and hand lettering and create beautiful, expressive letterforms."
   },
@@ -91,7 +91,7 @@
     },
     "image": "https://i.ibb.co/HqLXwFF/fun.jpg",
     "availableSeats": 15,
-    "price": "$160",
+    "price": 160,
     "ratings": "4.5",
     "description": "Master the art of digital illustration and bring your artistic visions to life on the screen."
   }

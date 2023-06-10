@@ -7,6 +7,7 @@ import useCart from "../../hooks/useCart";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   const [cart] = useCart();
   const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
 
@@ -38,7 +39,7 @@ if(e.target.checked){
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link onClick={handleLogOut} to="/class">
+        <Link  to="/class">
           Classes
         </Link>
       </li>
@@ -69,7 +70,8 @@ if(e.target.checked){
         </>
       )}
 
-      {user?.uid && (
+      {user?.email && (
+        
         <>
           {" "}
           {user?.photoURL ? (

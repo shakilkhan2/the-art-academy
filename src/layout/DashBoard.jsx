@@ -1,16 +1,25 @@
 import { Link, Outlet } from "react-router-dom";
 import { SiGoogleclassroom } from "react-icons/si";
 import { GiTeacher } from "react-icons/Gi";
-import { MdClass, MdHome, MdOutlineClass, MdPayment, MdVerifiedUser } from "react-icons/md";
+import {
+  MdClass,
+  MdHome,
+  MdOutlineClass,
+  MdPayment,
+  MdVerifiedUser,
+} from "react-icons/md";
 import useCart from "../components/hooks/useCart";
 import { Helmet } from "react-helmet-async";
 import useAdmin from "../components/hooks/useAdmin";
+import useUser from "../components/hooks/useUser";
 
 const DashBoard = () => {
   const [cart] = useCart();
   // TODO: have to create admin, students, instructors
   // const isAdmin = true;
   const [isAdmin] = useAdmin();
+  const [checkUser] = useUser();
+  console.log(checkUser);
 
   return (
     <div className="drawer lg:drawer-open">
@@ -38,9 +47,9 @@ const DashBoard = () => {
               </span>
             </p>
           </Link>
-          {isAdmin ? (
+          {checkUser === "admin" && (
             <>
-            <li>
+              <li>
                 <Link to="/dashboard/manage_classes">
                   <MdClass className="h-6 w-6" />
                   Manage Classes
@@ -52,9 +61,9 @@ const DashBoard = () => {
                   Manage Users
                 </Link>
               </li>
-            
             </>
-          ) : (
+          )}
+          {checkUser === "student" && (
             <>
               <li>
                 <Link to="/dashboard/mycart">
@@ -79,6 +88,24 @@ const DashBoard = () => {
               </li>
             </>
           )}
+          {checkUser === "instructor" && (
+            <>
+              
+              <li>
+                <Link to="/dashboard/add_class">
+                  <MdClass className="h-6 w-6" />
+                  Add a Class
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard/my_classes">
+                  <MdPayment className="h-6 w-6" />
+                  My Classes
+                </Link>
+              </li>
+            </>
+          )}
+
           <div className="divider"></div>
           <li>
             <Link to="/">

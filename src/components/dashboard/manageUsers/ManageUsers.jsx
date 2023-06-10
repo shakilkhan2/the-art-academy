@@ -2,11 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
+  const [axiosSecure] = useAxiosSecure()
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+    const res = await axiosSecure.get("/users");
+    return res.data;
   });
 
 // admin
@@ -48,7 +50,7 @@ const ManageUsers = () => {
       <h1 className="text-4xl font-bold text-center text-amber-600 my-4">
         Manage Users:{users.length}
       </h1>
-      <div className="uppercase font-semibold flex items-center justify-between px-4 "></div>
+      
       <div className="overflow-x-auto border border-amber-600">
         <table className="table table-zebra">
           {/* head */}

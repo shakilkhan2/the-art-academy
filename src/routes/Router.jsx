@@ -13,6 +13,9 @@ import PaymentHistory from "../components/dashboard/paymentHistory/PaymentHistor
 import PrivateRoutes from "./PrivateRoutes";
 import ManageClasses from "../components/dashboard/manageClasses/ManageClasses";
 import ManageUsers from "../components/dashboard/manageUsers/ManageUsers";
+import AddClass from "../components/dashboard/addClass/AddClass";
+import AdminonlyRoutes from "./AdminonlyRoutes";
+import MyClasses from "../components/dashboard/myclasses/MyClasses";
 
 export const router = createBrowserRouter([
   {
@@ -67,8 +70,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manage_users",
-        element: <ManageUsers />,
+        element:<AdminonlyRoutes> <ManageUsers /></AdminonlyRoutes>,
       },
+      {
+        path: "/dashboard/add_class",
+        element: <AddClass/>
+      },
+      {
+        path: "/dashboard/my_classes",
+        element: <MyClasses/>
+      }
     ],
   },
   {

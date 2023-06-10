@@ -1,16 +1,26 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 
 const CheckOutForm = ({ price }) => {
   console.log(price);
   const stripe = useStripe();
   const elements = useElements();
+  const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
 
+  useEffect(() => {
+    axiosSecure.post("/create-payment-intent", { price }).then((res) => {
+      console.log(res.data.clientSecret);
+      setClientSecret(res.data.clientSecret);
+    });
+  }, [price]);
 
-
-
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -33,7 +43,28 @@ const CheckOutForm = ({ price }) => {
       setCardError(error.message);
     } else {
       setCardError("");
-      console.log("payment method", paymentMethod);
+      // console.log("payment method", paymentMethod);
+    }
+
+    setProcessing(true);
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.displayName || "anonymous",
+            email: user?.email || "unknown",
+          },
+        },
+      });
+
+    if (confirmError) {
+      console.log(confirmError);
+    }
+    console.log("paymentIntend", paymentIntent);
+    setProcessing(false);
+    if (paymentIntent.status === "succeeded") {
+      setTransactionId(paymentIntent.id);
     }
   };
 
@@ -63,13 +94,16 @@ const CheckOutForm = ({ price }) => {
         <button
           type="submit"
           className="  px-4 my-4 py-1  rounded-md  bg-amber-600 text-white hover:bg-amber-700 mx-2 font-semibold"
-          disabled={!stripe}
+          disabled={!stripe || !clientSecret || processing}
         >
           Pay
         </button>
       </form>
       {cardError && (
         <p className="text-sm text-red-600 mt-4 text-center"> {cardError} </p>
+      )}
+      {transactionId && (
+        <p className='text-green-600 text-center text-sm mt-4'>Payment success with Transaction Id: <span className="text-amber-600 underline">{transactionId}</span></p>
       )}
     </div>
   );

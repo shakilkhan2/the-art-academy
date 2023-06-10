@@ -2,9 +2,12 @@ import PopularClasses from "./popularClasses/PopularClasses";
 import PopularInstructor from "./popularInsctructor/PopularInstructor";
 import Slider from "./slider/Slider";
 import { Helmet, } from 'react-helmet-async';
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 
 
 const Home = () => {
+    const { scrollYProgress } = useViewportScroll();
+    const scale = useTransform(scrollYProgress, [0, 1], [0.2, 2]);
     
     return (
         <div>

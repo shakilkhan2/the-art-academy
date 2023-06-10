@@ -22,7 +22,7 @@ const MyClasses = () => {
     <div className="w-full px-4 mb-4">
       <h1 className="text-4xl font-bold text-center text-amber-600 my-8">Instructors classes..{newClasses.length}</h1>
 
-      <div className="overflow-x-auto border border-amber-600">
+      <div className="overflow-x-auto border border-amber-600 rounded-md">
         <table className="table table-zebra">
           {/* head */}
           <thead>

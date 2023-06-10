@@ -16,17 +16,17 @@ const handleSubmit =async (event) => {
     if(card === null){
         return
     }
-
+    console.log('card', card)
 
 }
 
 
     return (
         <div>
-              <h1 className="text-4xl font-bold text-center text-amber-600 mb-8">Check out</h1>
+             
 
-              <form onSubmit={handleSubmit}>
-      <CardElement
+              <form className="border bg-base-100 shadow-2xl border-amber-700 p-4 pb-12 rounded-md" onSubmit={handleSubmit}>
+      <CardElement className="border border-amber-700 p-2 rounded-md"
         options={{
           style: {
             base: {
@@ -42,7 +42,7 @@ const handleSubmit =async (event) => {
           },
         }}
       />
-      <button type="submit" disabled={!stripe}>
+      <button type="submit" className="  px-4 my-4 py-1  rounded-md  bg-amber-600 text-white hover:bg-amber-700 mx-2 font-semibold" disabled={!stripe}>
         Pay
       </button>
     </form>

@@ -2,14 +2,15 @@ import { Link, Outlet } from "react-router-dom";
 import { SiGoogleclassroom } from "react-icons/si";
 import { GiTeacher } from "react-icons/Gi";
 import { MdClass, MdHome, MdOutlineClass, MdPayment, MdVerifiedUser } from "react-icons/md";
-import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../components/hooks/useCart";
 import { Helmet } from "react-helmet-async";
+import useAdmin from "../components/hooks/useAdmin";
 
 const DashBoard = () => {
   const [cart] = useCart();
   // TODO: have to create admin, students, instructors
-  const isAdmin = true;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="drawer lg:drawer-open">

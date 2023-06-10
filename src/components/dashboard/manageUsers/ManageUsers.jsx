@@ -47,11 +47,11 @@ const ManageUsers = () => {
       <Helmet>
         <title>Users | The Art Academy</title>
       </Helmet>
-      <h1 className="text-4xl font-bold text-center text-amber-600 my-4">
+      <h1 className="text-4xl font-bold text-center text-amber-600 my-8">
         Manage Users:{users.length}
       </h1>
       
-      <div className="overflow-x-auto border border-amber-600">
+      <div className="overflow-x-auto border border-amber-600 rounded-md mb-4">
         <table className="table table-zebra">
           {/* head */}
           <thead>

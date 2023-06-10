@@ -34,14 +34,16 @@ const MyCart = () => {
 
   return (
     <div className="w-full px-4 ">
-      <div className="uppercase font-semibold flex items-center justify-between px-4 border border-amber-600">
+       <h1 className="text-4xl font-bold text-center text-amber-600 mb-8">My Classes</h1>
+      
+      <div className="uppercase font-semibold flex items-center justify-between px-4 border border-amber-600 rounded-t-md">
         <h1>Selected classes: {cart.length}</h1>
         <h1 className="mx-12"> Price: ${total}</h1>
         <button className="bg-white border border-amber-600  px-2 my-4 py-1  rounded-md hover:text-white hover:bg-amber-600 font-normal mx-2">
           Pay Now
         </button>
       </div>
-      <div className="overflow-x-auto border border-amber-600">
+      <div className="overflow-x-auto border border-amber-600 rounded-b-md">
         <table className="table table-zebra">
           {/* head */}
           <thead>

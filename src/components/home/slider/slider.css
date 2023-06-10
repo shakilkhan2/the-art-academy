@@ -1,0 +1,16 @@
+.slider-container {
+    max-width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .slider-container {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .slider-container {
+      max-width: 100%;
+    }
+  }
+  

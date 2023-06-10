@@ -2,8 +2,9 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/authProvider/AuthProvider";
+import { toast } from "react-hot-toast";
 
-const CheckOutForm = ({ price }) => {
+const CheckOutForm = ({ price, cart }) => {
   console.log(price);
   const stripe = useStripe();
   const elements = useElements();
@@ -65,6 +66,24 @@ const CheckOutForm = ({ price }) => {
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
+
+      const payment = {
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        price,
+        date: new Date(),
+        quantity: cart.length,
+        cartId: cart.map((course) => course._id),
+        courseId: cart.map((course) => course.courseId),
+        orderStatus: "pending",
+        courses: cart.map((course) => course.name),
+      };
+      axiosSecure.post("/payments", payment).then((res) => {
+        console.log(res.data);
+        if (res.data.result.insertedId) {
+          toast.success("Congratulations! You got the access.");
+        }
+      });
     }
   };
 
@@ -103,7 +122,10 @@ const CheckOutForm = ({ price }) => {
         <p className="text-sm text-red-600 mt-4 text-center"> {cardError} </p>
       )}
       {transactionId && (
-        <p className='text-green-600 text-center text-sm mt-4'>Payment success with Transaction Id: <span className="text-amber-600 underline">{transactionId}</span></p>
+        <p className="text-green-600 text-center text-sm mt-4">
+          Payment success with Transaction Id:{" "}
+          <span className="text-amber-600 underline">{transactionId}</span>
+        </p>
       )}
     </div>
   );

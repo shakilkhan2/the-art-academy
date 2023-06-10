@@ -14,7 +14,7 @@ const price = parseFloat(total.toFixed(2));
         <div className="w-[50%]">
              <h1 className="text-2xl font-semibold text-center text-amber-600 mb-8">Payment Card</h1>
              <Elements stripe={stripePromise}>
-                <CheckOutForm price={price}/>
+                <CheckOutForm cart ={cart} price={price}/>
              </Elements>
         </div>
     );

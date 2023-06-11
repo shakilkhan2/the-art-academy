@@ -9,7 +9,7 @@ const PopularClasses = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/allInfo").then((res) => {
+    axios.get("https://art-academy-server.vercel.app/allInfo").then((res) => {
       setClasses(res.data);
       setLoading(false);
     });
@@ -22,11 +22,7 @@ const PopularClasses = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {classes.map((course) => (
-        <Courses
-          
-          key={course.id}
-          course={course}
-        />
+        <Courses key={course.id} course={course} />
       ))}
     </div>
   );

@@ -9,9 +9,9 @@ import { useState } from "react";
 const Courses = ({ course }) => {
   const [btnDisabled, setBtnDisabled] = useState(false);
 
-    const {_id, name, image, price, } = course
+  const { _id, name, image, price } = course;
   const { user } = useContext(AuthContext);
-  const [, refetch] = useCart()
+  const [, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -19,19 +19,19 @@ const Courses = ({ course }) => {
     console.log(course);
 
     if (user && user.email) {
-        const cartItem = {courseId: _id, name, image, price, email: user.email}
-      fetch("http://localhost:5000/carts", {
-        method: 'POST',
+      const cartItem = { courseId: _id, name, image, price, email: user.email };
+      fetch("https://art-academy-server.vercel.app/carts", {
+        method: "POST",
         headers: {
-            'content-type': 'application/json'
+          "content-type": "application/json",
         },
-        body: JSON.stringify(cartItem)
+        body: JSON.stringify(cartItem),
       })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            refetch()
-            setBtnDisabled(true)
+            refetch();
+            setBtnDisabled(true);
             toast.success("Added Successfully!");
           }
         });

@@ -31,7 +31,7 @@ const Register = () => {
             email: data.email,
             role: "student",
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://art-academy-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

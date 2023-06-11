@@ -64,7 +64,7 @@ const NavBar = () => {
                   ? "/dashboard/my_classes"
                   : checkUser === "student"
                   ? "/dashboard/mycart"
-                  : " "
+                  : ""
               }
             >
               Dashboard

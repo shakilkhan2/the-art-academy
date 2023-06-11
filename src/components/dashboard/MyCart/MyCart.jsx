@@ -19,7 +19,7 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/${course._id}`, {
+        fetch(`https://art-academy-server.vercel.app/carts/${course._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -35,15 +35,17 @@ const MyCart = () => {
 
   return (
     <div className="w-full px-4 ">
-       <h1 className="text-4xl font-bold text-center text-amber-600 mb-8">My Classes</h1>
-      
+      <h1 className="text-4xl font-bold text-center text-amber-600 mb-8">
+        My Classes
+      </h1>
+
       <div className="uppercase font-semibold flex items-center justify-between px-4 border border-amber-600 rounded-t-md">
         <h1>Selected classes: {cart.length}</h1>
         <h1 className="mx-12"> Price: ${total}</h1>
-        <Link  to="/dashboard/payment">
-        <button className="bg-white border border-amber-600  px-2 my-4 py-1  rounded-md hover:text-white hover:bg-amber-600 font-normal mx-2">
-          Pay Now
-        </button>
+        <Link to="/dashboard/payment">
+          <button className="bg-white border border-amber-600  px-2 my-4 py-1  rounded-md hover:text-white hover:bg-amber-600 font-normal mx-2">
+            Pay Now
+          </button>
         </Link>
       </div>
       <div className="overflow-x-auto border border-amber-600 rounded-b-md">
@@ -73,10 +75,11 @@ const MyCart = () => {
                   </button>
                 </td>
                 <td>
-                  <Link to="/dashboard/payment"><button  className="border border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
-                    Play
-                  </button></Link>
-                  
+                  <Link to="/dashboard/payment">
+                    <button className="border border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                      Play
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}

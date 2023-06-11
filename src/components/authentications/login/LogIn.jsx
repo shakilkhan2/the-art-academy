@@ -15,7 +15,7 @@ const LogIn = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const {googleSignIn} = useContext(AuthContext);
+  const { googleSignIn } = useContext(AuthContext);
 
   // const [error, setError] = useState({ isError: false, message: "" });
 
@@ -27,28 +27,28 @@ const LogIn = () => {
     return <Navigate to={from}></Navigate>;
   }
 
-const handleGoogleSignIn = () => {
-  googleSignIn()
-  .then(result => {
-    const loggedUser =result.user;
-    console.log(loggedUser);
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
 
-    const saveUser = { name: loggedUser.displayName, email: loggedUser.email };
-    fetch("http://localhost:5000/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(saveUser),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        navigate(from, {replace: true});
-      });
-
-    
-  })
-}
+      const saveUser = {
+        name: loggedUser.displayName,
+        email: loggedUser.email,
+      };
+      fetch("https://art-academy-server.vercel.app/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+        });
+    });
+  };
 
   const onSubmit = (data) => {
     // console.log(data);
@@ -59,7 +59,6 @@ const handleGoogleSignIn = () => {
       navigate(from, { replace: true });
       toast.success("Logged in Successfully!");
     });
-    
   };
 
   return (
@@ -122,7 +121,7 @@ const handleGoogleSignIn = () => {
             </small>
           </p>
           <div
-              onClick={handleGoogleSignIn}
+            onClick={handleGoogleSignIn}
             className="flex items-center cursor-pointer justify-around  border rounded-lg  px-8 py-3 mt-8 font-semibold  text-white bg-amber-950 w-[50%] mx-auto"
           >
             <div>

@@ -4,27 +4,27 @@ import Loader from "../../shared/loader/Loader";
 import axios from "axios";
 
 const EnrolledClasses = () => {
-    const [enrolledClass, setEnrolledClass] = useState([]);
-    const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      setLoading(true);
-      axios.get("http://localhost:5000/payments").then((res) => {
-        setEnrolledClass(res.data);
-        console.log(res.data)
-        setLoading(false);
-      });
-    }, []);
+  const [enrolledClass, setEnrolledClass] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    if (loading) {
-            return <Loader />;
-          }
+  useEffect(() => {
+    setLoading(true);
+    axios.get("https://art-academy-server.vercel.app/payments").then((res) => {
+      setEnrolledClass(res.data);
+      console.log(res.data);
+      setLoading(false);
+    });
+  }, []);
 
- 
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="w-full px-4">
-      <h1 className="text-2xl font-semibold text-center text-amber-600 mb-8">Enrolled Classes</h1>
+      <h1 className="text-2xl font-semibold text-center text-amber-600 mb-8">
+        Enrolled Classes
+      </h1>
       <div className="overflow-x-auto border border-amber-600 rounded-md mb-4">
         <table className="table table-zebra">
           {/* head */}
@@ -34,7 +34,6 @@ const EnrolledClasses = () => {
               <th>Course</th>
               <th>Price</th>
               <th>Quantity</th>
-              
             </tr>
           </thead>
           <tbody>
@@ -44,7 +43,6 @@ const EnrolledClasses = () => {
                 <td>{enrolled?.courses?.[1]}</td>
                 <td>${enrolled.price}</td>
                 <td className="">{enrolled.quantity}</td>
-               
               </tr>
             ))}
           </tbody>

@@ -9,10 +9,12 @@ const ManageClasses = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/added_class").then((res) => {
-      setNewClasses(res.data);
-      setLoading(false);
-    });
+    axios
+      .get("https://art-academy-server.vercel.app/added_class")
+      .then((res) => {
+        setNewClasses(res.data);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
@@ -40,12 +42,10 @@ const ManageClasses = () => {
               <th>Price</th>
               <th></th>
               <th>Status</th>
-              
             </tr>
           </thead>
           <tbody>
             {newClasses.map((user, index) => (
-              
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>
@@ -65,19 +65,19 @@ const ManageClasses = () => {
                 <td>{user.seat}</td>
                 <td className="text-right">${user.price}</td>
                 <td>
-                <button className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
-                      Pending
-                    </button>
+                  <button className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                    Pending
+                  </button>
                 </td>
                 <td>
-                <button className="border  border-green-600  px-2 my-4 hover:text-white hover:bg-green-600  rounded-md ">
-                      Approve
-                    </button>
+                  <button className="border  border-green-600  px-2 my-4 hover:text-white hover:bg-green-600  rounded-md ">
+                    Approve
+                  </button>
                 </td>
                 <td>
-                <button className="border  border-red-600  px-2 my-4 hover:text-white hover:bg-red-600  rounded-md ">
-                      Denied
-                    </button>
+                  <button className="border  border-red-600  px-2 my-4 hover:text-white hover:bg-red-600  rounded-md ">
+                    Denied
+                  </button>
                 </td>
               </tr>
             ))}

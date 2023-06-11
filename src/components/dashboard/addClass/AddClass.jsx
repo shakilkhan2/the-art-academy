@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddClass = () => {
-    // const [axiosSecure] = useAxiosSecure();
+  // const [axiosSecure] = useAxiosSecure();
   // const img_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
   // const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${img_hosting_token}`
   const { user } = useContext(AuthContext);
@@ -29,7 +29,7 @@ const AddClass = () => {
     };
     console.log(classInfo);
 
-    fetch("http://localhost:5000/added_class", {
+    fetch("https://art-academy-server.vercel.app/added_class", {
       method: "POST",
 
       headers: {

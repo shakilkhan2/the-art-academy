@@ -8,10 +8,12 @@ const MyClasses = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/added_class").then((res) => {
-      setNewClasses(res.data);
-      setLoading(false);
-    });
+    axios
+      .get("https://art-academy-server.vercel.app/added_class")
+      .then((res) => {
+        setNewClasses(res.data);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
@@ -20,7 +22,9 @@ const MyClasses = () => {
 
   return (
     <div className="w-full px-4 mb-4">
-      <h1 className="text-4xl font-bold text-center text-amber-600 my-8">Instructors classes..{newClasses.length}</h1>
+      <h1 className="text-4xl font-bold text-center text-amber-600 my-8">
+        Instructors classes..{newClasses.length}
+      </h1>
 
       <div className="overflow-x-auto border border-amber-600 rounded-md">
         <table className="table table-zebra">
@@ -44,28 +48,31 @@ const MyClasses = () => {
                 <td>{user.price}</td>
                 <td>
                   {user.role === "admin" ? (
-                    <button disabled className="  px-2 my-4 text-white bg-amber-600  rounded-md ">
+                    <button
+                      disabled
+                      className="  px-2 my-4 text-white bg-amber-600  rounded-md "
+                    >
                       Admin
                     </button>
                   ) : (
-                    <button  className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
-                     Pending
+                    <button className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                      Pending
                     </button>
                   )}
                 </td>
                 <td>
-                {user.role === "instructor" ? (
-                    <button disabled
-                     className="px-2 my-4 text-white bg-amber-600  rounded-md ">
+                  {user.role === "instructor" ? (
+                    <button
+                      disabled
+                      className="px-2 my-4 text-white bg-amber-600  rounded-md "
+                    >
                       instructor
                     </button>
                   ) : (
-                    <button 
-                     className="border border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
-                    Update
+                    <button className="border border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                      Update
                     </button>
                   )}
-                  
                 </td>
               </tr>
             ))}

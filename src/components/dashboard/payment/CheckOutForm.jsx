@@ -3,9 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 import { toast } from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 
 const CheckOutForm = ({ price, cart }) => {
-  console.log(price);
+  // console.log(price);
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -16,11 +17,13 @@ const CheckOutForm = ({ price, cart }) => {
   const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
-    axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret);
-    });
-  }, [price]);
+    if (price) {
+      axiosSecure.post("/create-payment-intent", { price }).then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
+    }
+  }, [price, axiosSecure]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,8 +83,13 @@ const CheckOutForm = ({ price, cart }) => {
       };
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
-        if (res.data.result.insertedId) {
-          toast.success("Congratulations! You got the access.");
+        if (res.data.insertResult.insertedId) {
+          return (
+            <>
+              <Navigate to="/" />
+              {toast.success("Congratulations! You got the access.")}
+            </>
+          );
         }
       });
     }

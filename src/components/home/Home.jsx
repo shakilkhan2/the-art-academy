@@ -26,7 +26,7 @@ const Home = () => {
     What is the duration of the course?
     </div>
     <div className="collapse-content"> 
-      <p>The course duration varies depending on the specific program you choose. We offer a range of courses with durations that can be as short as a few weeks to as long as several months. For more detailed information on the duration of each course, we recommend visiting our website or contacting our admissions team directly. They will be able to provide you with specific information tailored to your needs. Feel free to reach out to us, and we'll be happy to assist you!</p>
+      <p>The course duration varies depending on the specific program you choose. We offer a range of courses with durations that can be as short as a few weeks to as long as several months. For more detailed information on the duration of each course, we recommend visiting our website or contacting our admissions team directly. They will be able to provide you with specific information tailored to your needs. Feel free to reach out to us, and we will be happy to assist you!</p>
     </div>
   </div>
   <div className="collapse collapse-arrow join-item border border-amber-300">
@@ -35,7 +35,7 @@ const Home = () => {
     Are these courses exclusively for children?
     </div>
     <div className="collapse-content"> 
-      <p>No, our courses are not exclusively for children. We offer a wide range of courses that cater to learners of all ages, including children, teenagers, and adults. Whether you're a beginner or an advanced learner, we have courses designed to meet your specific needs and skill levels. Our diverse selection of courses ensures that everyone can find a suitable program to enhance their knowledge and skills. Feel free to explore our course offerings to find the right fit for you!</p>
+      <p>No, our courses are not exclusively for children. We offer a wide range of courses that cater to learners of all ages, including children, teenagers, and adults. Whether you are a beginner or an advanced learner, we have courses designed to meet your specific needs and skill levels. Our diverse selection of courses ensures that everyone can find a suitable program to enhance their knowledge and skills. Feel free to explore our course offerings to find the right fit for you!</p>
     </div>
   </div>
   <div className="collapse collapse-arrow join-item border border-amber-300">

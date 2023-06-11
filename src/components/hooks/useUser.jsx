@@ -13,7 +13,7 @@ const useUser = () => {
       return res.data;
     },
   });
-  console.log(isUser);
+  // console.log(isUser);
   const checkUser = isUser.role;
   return [checkUser];
 };

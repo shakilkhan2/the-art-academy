@@ -4,28 +4,30 @@ import { BiUser } from "react-icons/bi";
 import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 // import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
+import useUser from "../../hooks/useUser";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
+  const [checkUser] = useUser();
   const [cart] = useCart();
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
 
-const hnadleTheme = (e) => {
-if(e.target.checked){
-  setTheme("dark")
-}else{
-  setTheme("light")
-}
-}
-
+  const hnadleTheme = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme)
-  }, [theme])
-
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
 
   const handleLogOut = () => {
     logOut()
@@ -39,9 +41,7 @@ if(e.target.checked){
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link  to="/class">
-          Classes
-        </Link>
+        <Link to="/class">Classes</Link>
       </li>
       <li>
         <Link to="/instructor">Instructors</Link>
@@ -56,8 +56,21 @@ if(e.target.checked){
       {user ? (
         <>
           <li>
-            <Link to="/dashboard/mycart">Dashboard</Link>
+            <Link
+              to={
+                checkUser === "admin"
+                  ? "/dashboard/manage_users"
+                  : checkUser === "instructor"
+                  ? "/dashboard/my_classes"
+                  : checkUser === "student"
+                  ? "/dashboard/mycart"
+                  : " "
+              }
+            >
+              Dashboard
+            </Link>
           </li>
+
           <li>
             <Link onClick={handleLogOut}>Logout</Link>
           </li>
@@ -71,7 +84,6 @@ if(e.target.checked){
       )}
 
       {user?.email && (
-        
         <>
           {" "}
           {user?.photoURL ? (
@@ -94,7 +106,11 @@ if(e.target.checked){
       )}
       <label className="swap swap-rotate">
         {/* this hidden checkbox controls the state */}
-        <input type="checkbox" onChange={hnadleTheme} checked = {theme === "light" ? false : true} />
+        <input
+          type="checkbox"
+          onChange={hnadleTheme}
+          checked={theme === "light" ? false : true}
+        />
 
         {/* sun icon */}
         <svg

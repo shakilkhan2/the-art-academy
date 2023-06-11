@@ -19,7 +19,7 @@ const DashBoard = () => {
   // const isAdmin = true;
   const [isAdmin] = useAdmin();
   const [checkUser] = useUser();
-  console.log(checkUser);
+  // console.log(checkUser);
 
   return (
     <div className="drawer lg:drawer-open">

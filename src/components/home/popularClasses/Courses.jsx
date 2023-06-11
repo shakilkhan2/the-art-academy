@@ -4,8 +4,11 @@ import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useCart from "../../hooks/useCart";
+import { useState } from "react";
 
 const Courses = ({ course }) => {
+  const [btnDisabled, setBtnDisabled] = useState(false);
+
     const {_id, name, image, price, } = course
   const { user } = useContext(AuthContext);
   const [, refetch] = useCart()
@@ -28,6 +31,7 @@ const Courses = ({ course }) => {
         .then((data) => {
           if (data.insertedId) {
             refetch()
+            setBtnDisabled(true)
             toast.success("Added Successfully!");
           }
         });
@@ -66,6 +70,7 @@ const Courses = ({ course }) => {
       </div>
       <button
         onClick={() => handleAddToCart(course)}
+        disabled={btnDisabled}
         className="bg-white border border-amber-600  px-2 my-4 py-1  rounded-md hover:text-white hover:bg-amber-600 mx-2"
       >
         Start Now

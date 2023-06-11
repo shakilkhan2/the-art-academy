@@ -20,7 +20,7 @@ const Courses = ({ course }) => {
 
     if (user && user.email) {
       const cartItem = { courseId: _id, name, image, price, email: user.email };
-      fetch("https://art-academy-server.vercel.app/carts", {
+      fetch("http://localhost:5000/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -17,6 +17,7 @@ import AddClass from "../components/dashboard/addClass/AddClass";
 import AdminonlyRoutes from "./AdminonlyRoutes";
 import MyClasses from "../components/dashboard/myclasses/MyClasses";
 import Payment from "../components/dashboard/payment/Payment";
+import UpdateClass from "../components/dashboard/updateClass/UpdateClass";
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/payment",
         element: <Payment/>
+      },
+      {
+        path: "/dashboard/update-class",
+        element: <UpdateClass/>
       }
     ],
   },

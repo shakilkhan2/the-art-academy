@@ -36,7 +36,7 @@ const LogIn = () => {
         name: loggedUser.displayName,
         email: loggedUser.email,
       };
-      fetch("https://art-academy-server.vercel.app/users", {
+      fetch("http://localhost:5000/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -19,7 +19,7 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://art-academy-server.vercel.app/carts/${course._id}`, {
+        fetch(`http://localhost:5000/carts/${course._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -13,7 +13,7 @@ const useCart = () => {
     enabled: !!user?.email && !!localStorage.getItem("access-token"),
     //     queryFn: async () => {
     //       const response = await fetch(
-    //         `https://art-academy-server.vercel.app/carts?email=${user?.email}`, {headers: {
+    //         `http://localhost:5000/carts?email=${user?.email}`, {headers: {
     //           authorization: `bearer ${token}`
     //         }}
     //       );

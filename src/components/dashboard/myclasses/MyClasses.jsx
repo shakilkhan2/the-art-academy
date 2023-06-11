@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loader from "../../shared/loader/Loader";
+import { Link } from "react-router-dom";
 
 const MyClasses = () => {
   const [newClasses, setNewClasses] = useState([]);
@@ -8,17 +9,21 @@ const MyClasses = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get("https://art-academy-server.vercel.app/added_class")
-      .then((res) => {
-        setNewClasses(res.data);
-        setLoading(false);
-      });
+    axios.get("http://localhost:5000/added_class").then((res) => {
+      setNewClasses(res.data);
+      setLoading(false);
+    });
   }, []);
 
   if (loading) {
     return <Loader />;
   }
+
+
+// update classes:
+
+
+
 
   return (
     <div className="w-full px-4 mb-4">
@@ -47,32 +52,14 @@ const MyClasses = () => {
                 <td>{user.seat}</td>
                 <td>{user.price}</td>
                 <td>
-                  {user.role === "admin" ? (
-                    <button
-                      disabled
-                      className="  px-2 my-4 text-white bg-amber-600  rounded-md "
-                    >
-                      Admin
-                    </button>
-                  ) : (
-                    <button className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                <button className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
                       Pending
                     </button>
-                  )}
                 </td>
                 <td>
-                  {user.role === "instructor" ? (
-                    <button
-                      disabled
-                      className="px-2 my-4 text-white bg-amber-600  rounded-md "
-                    >
-                      instructor
-                    </button>
-                  ) : (
-                    <button className="border border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                <Link to="/dashboard/update-class"><button   className="border border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
                       Update
-                    </button>
-                  )}
+                    </button></Link>
                 </td>
               </tr>
             ))}

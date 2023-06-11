@@ -10,7 +10,7 @@ const Classes = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://art-academy-server.vercel.app/allInfo").then((res) => {
+    axios.get("http://localhost:5000/allInfo").then((res) => {
       setClasses(res.data);
       setLoading(false);
     });

@@ -9,7 +9,7 @@ const PaymentHistory = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://art-academy-server.vercel.app/payments").then((res) => {
+    axios.get("http://localhost:5000/payments").then((res) => {
       setPayments(res.data);
       console.log(res.data);
       setLoading(false);

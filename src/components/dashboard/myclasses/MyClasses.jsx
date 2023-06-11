@@ -19,11 +19,7 @@ const MyClasses = () => {
     return <Loader />;
   }
 
-
-// update classes:
-
-
-
+  // update classes:
 
   return (
     <div className="w-full px-4 mb-4">
@@ -52,14 +48,16 @@ const MyClasses = () => {
                 <td>{user.seat}</td>
                 <td>{user.price}</td>
                 <td>
-                <button className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
-                      Pending
-                    </button>
+                  <button className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                    {user.status}
+                  </button>
                 </td>
                 <td>
-                <Link to="/dashboard/update-class"><button   className="border border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                  <Link to={`/dashboard/update-class/${user._id}`}>
+                    <button className="border border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
                       Update
-                    </button></Link>
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}

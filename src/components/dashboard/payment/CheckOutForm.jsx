@@ -3,9 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 import { toast } from "react-hot-toast";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CheckOutForm = ({ price, cart }) => {
+  const navigate = useNavigate();
   // console.log(price);
   const stripe = useStripe();
   const elements = useElements();
@@ -83,13 +84,9 @@ const CheckOutForm = ({ price, cart }) => {
       };
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
-        if (res.data.insertResult.insertedId) {
-          return (
-            <>
-              <Navigate to="/" />
-              {toast.success("Congratulations! You got the access.")}
-            </>
-          );
+        if (res.data.insertResult) {
+          toast.success("Congratulations! You got the access.");
+          navigate("/dashboard/payment");
         }
       });
     }

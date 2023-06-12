@@ -1,14 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 import { toast } from "react-hot-toast";
-import { useParams, useRevalidator } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useNavigate, useParams, useRevalidator } from "react-router-dom";
+import { useState } from "react";
 
 const UpdateClass = () => {
+  const navigate = useNavigate();
+  const [classData, setClassData] = useState("");
   const { user } = useContext(AuthContext);
   const { id } = useParams();
   let revalidator = useRevalidator();
-  console.log(id);
+  // console.log(id);
 
   const handleUpdateClass = (event) => {
     event.preventDefault();
@@ -20,17 +22,20 @@ const UpdateClass = () => {
     const email = form.email.value;
     const price = parseFloat(form.price.value);
     const seat = parseFloat(form.seat.value);
+    const about = form.about.value;
     const classInfo = {
       className: name,
       photo: photo,
       instructor: instructor,
       instructorEmail: email,
       price: price,
+      status: "pending",
       seat: seat,
+      about: about,
     };
     console.log(classInfo);
 
-    fetch(`http://localhost:5000/added_class/${id}`, {
+    fetch(`https://art-academy-server.vercel.app/update_class/${id}`, {
       method: "PATCH",
 
       headers: {
@@ -41,7 +46,11 @@ const UpdateClass = () => {
       .then((res) => res.json())
       .then((data) => {
         revalidator.revalidate();
-        Swal.fire("Good job!", "Your product successfully updated!", "success");
+        setClassData(data);
+        toast.success("Class Updated successfully!");
+        if (data.modifiedCount > 0) {
+          navigate("/dashboard/my_classes");
+        }
         console.log(data);
       });
 
@@ -63,6 +72,7 @@ const UpdateClass = () => {
             className=" mx-auto pl-2 py-3 w-[45%] my-6 border rounded-lg border-amber-500"
             type="text"
             name="name"
+            defaultValue={classData.className}
             id=""
             placeholder="class name"
             required
@@ -71,8 +81,9 @@ const UpdateClass = () => {
             className="mx-auto pl-2 py-3 w-[45%] my-6 border rounded-lg border-amber-500"
             type="text"
             name="photo"
-            defaultValue="https://img.freepik.com/free-photo/boy-standing-table-drawing-looking-camera_259150-59573.jpg?w=740&t=st=1686400190~exp=1686400790~hmac=81d24b99867910b43b7f2bf852448f804dcc4b4f8cfb71af89170576c2305053"
+            required
             placeholder="photo url"
+            defaultValue="https://img.freepik.com/free-photo/close-up-oil-paints-brushes-palette_176420-2827.jpg?w=740&t=st=1686559405~exp=1686560005~hmac=114c452eb8827b84a3e95ebf2219d1682f7f1e5bb93bb584f23cfbf06b389d6c"
             id=""
           />
         </div>
@@ -114,6 +125,17 @@ const UpdateClass = () => {
             placeholder="$price"
             required
           />
+        </div>
+        <div className=" flex justify-between">
+          <textarea
+            className=" mx-auto pl-2 py-3 w-[95%] mt-6 border rounded-lg border-amber-500"
+            type="text"
+            placeholder="description"
+            name="about"
+            id=""
+            cols="20"
+            rows="5"
+          ></textarea>
         </div>
         <div className="">
           <button className="w-[95%] ms-6 text-center border rounded-lg  px-8 py-3 mt-8 font-semibold text-white bg-amber-500 hover:bg-amber-400">

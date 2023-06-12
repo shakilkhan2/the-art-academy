@@ -10,6 +10,7 @@ const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
   const [checkUser] = useUser();
+  console.log(checkUser);
   const [cart] = useCart();
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -56,19 +57,7 @@ const NavBar = () => {
       {user ? (
         <>
           <li>
-            <Link
-              to={
-                checkUser === "admin"
-                  ? "/dashboard/manage_users"
-                  : checkUser === "instructor"
-                  ? "/dashboard/my_classes"
-                  : checkUser === "student"
-                  ? "/dashboard/mycart"
-                  : ""
-              }
-            >
-              Dashboard
-            </Link>
+            <Link to="/dashboard">Dashboard</Link>
           </li>
 
           <li>

@@ -5,10 +5,12 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useCart from "../../hooks/useCart";
 import { useState } from "react";
+import useUser from "../../hooks/useUser";
 
 const Courses = ({ course }) => {
   const [btnDisabled, setBtnDisabled] = useState(false);
-
+  const checkUser = useUser();
+  console.log(checkUser);
   const { _id, name, image, price } = course;
   const { user } = useContext(AuthContext);
   const [, refetch] = useCart();
@@ -20,7 +22,7 @@ const Courses = ({ course }) => {
 
     if (user && user.email) {
       const cartItem = { courseId: _id, name, image, price, email: user.email };
-      fetch("http://localhost:5000/carts", {
+      fetch("https://art-academy-server.vercel.app/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -42,38 +44,45 @@ const Courses = ({ course }) => {
   };
 
   return (
-    <div className="border bg-slate-100 hover:shadow-2xl my-8 rounded-md group">
+    <div className="border bg-slate-100 hover:shadow-2xl my-8 relative rounded-md group">
       <div className="overflow-hidden">
         <img
           className="h-64 rounded-md object-fill group-hover:scale-110"
-          src={course.image}
+          src={course.photo}
           alt=""
         />
       </div>
-      <div className="p-2">
-        <h3 className="text-xl font-bold text-amber-700">{course.name}</h3>
-        <p>{course.description}</p>
+      <div className="p-2 mb-12">
+        <h3 className="text-xl font-bold text-amber-700">{course.className}</h3>
+        <p>{course.about}</p>
         <h3 className="  text-amber-700">
-          <span className="font-bold ">Instructor:</span>{" "}
-          {course.instructor?.name}
+          <span className="font-bold ">Instructor:</span> {course.instructor}
         </h3>
         <h3 className="  text-amber-700">
-          <span className="font-bold ">Available seats:</span>{" "}
-          {course.availableSeats}
+          <span className="font-bold ">Available seats:</span> {course.seat}
         </h3>
         <h3 className="  text-amber-700">
-          <span className="font-bold ">Price:</span> {course.price}
+          <span className="font-bold ">Price:</span> ${course.price}
         </h3>
         <h3 className="  text-amber-700">
-          <span className="font-bold ">Ratings:</span> {course.ratings}
+          {/* <span className="font-bold ">Ratings:</span> {course.ratings} */}
         </h3>
       </div>
+
       <button
         onClick={() => handleAddToCart(course)}
-        disabled={btnDisabled}
-        className="bg-white border border-amber-600  px-2 my-4 py-1  rounded-md hover:text-white hover:bg-amber-600 mx-2"
+        disabled={
+          btnDisabled ||
+          checkUser.includes("instructor") ||
+          checkUser.includes("admin")
+        }
+        className="bg-white border border-amber-600  px-2 py-1  rounded-md hover:text-white hover:bg-amber-600 mx-2 disabled:bg-amber-100 disabled:text-black absolute bottom-4  left-2"
       >
-        Start Now
+        {btnDisabled
+          ? "Added"
+          : checkUser.includes("instructor") || checkUser.includes("admin")
+          ? "not allowed"
+          : "Start Now"}
       </button>
     </div>
   );

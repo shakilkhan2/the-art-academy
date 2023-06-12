@@ -9,10 +9,12 @@ const PopularClasses = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/allInfo").then((res) => {
-      setClasses(res.data);
-      setLoading(false);
-    });
+    axios
+      .get("https://art-academy-server.vercel.app/added_class")
+      .then((res) => {
+        setClasses(res.data);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {

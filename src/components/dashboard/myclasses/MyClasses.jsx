@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loader from "../../shared/loader/Loader";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const MyClasses = () => {
   const [newClasses, setNewClasses] = useState([]);
@@ -9,10 +10,12 @@ const MyClasses = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/added_class").then((res) => {
-      setNewClasses(res.data);
-      setLoading(false);
-    });
+    axios
+      .get("https://art-academy-server.vercel.app/added_class")
+      .then((res) => {
+        setNewClasses(res.data);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
@@ -23,8 +26,8 @@ const MyClasses = () => {
 
   return (
     <div className="w-full px-4 mb-4">
-      <h1 className="text-4xl font-bold text-center text-amber-600 my-8">
-        Instructors classes..{newClasses.length}
+      <h1 className="text-4xl font-semibold text-center text-amber-600 my-8">
+        Your Added classes
       </h1>
 
       <div className="overflow-x-auto border border-amber-600 rounded-md">
@@ -48,7 +51,11 @@ const MyClasses = () => {
                 <td>{user.seat}</td>
                 <td>{user.price}</td>
                 <td>
-                  <button className="border  border-amber-600  px-2 my-4 hover:text-white hover:bg-amber-600  rounded-md ">
+                  <button
+                    disabled={user.status !== "denied"}
+                    onClick={() => toast.error(user?.feedback)}
+                    className="border    px-2 my-4    rounded-md "
+                  >
                     {user.status}
                   </button>
                 </td>

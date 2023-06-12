@@ -12,8 +12,11 @@ import useCart from "../components/hooks/useCart";
 import { Helmet } from "react-helmet-async";
 import useAdmin from "../components/hooks/useAdmin";
 import useUser from "../components/hooks/useUser";
+import { useContext } from "react";
+import { AuthContext } from "../providers/authProvider/AuthProvider";
 
 const DashBoard = () => {
+  const {user} = useContext(AuthContext)
   const [cart] = useCart();
   // TODO: have to create admin, students, instructors
   // const isAdmin = true;
@@ -22,12 +25,16 @@ const DashBoard = () => {
   // console.log(checkUser);
 
   return (
-    <div className="drawer lg:drawer-open">
+    <>
+   
+<div className="drawer lg:drawer-open">
+      
       <Helmet>
         <title>Dashboard | The Art Academy</title>
       </Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
+        <h1 className= 'text-sm text-amber-600'>Welcome {user?.displayName} </h1>
         <Outlet />
         <label
           htmlFor="my-drawer-2"
@@ -126,8 +133,12 @@ const DashBoard = () => {
             </Link>
           </li>
         </ul>
+       
       </div>
+    
     </div>
+    </>
+   
   );
 };
 

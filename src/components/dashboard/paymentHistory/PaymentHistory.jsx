@@ -9,7 +9,7 @@ const PaymentHistory = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:5000/payments").then((res) => {
+    axios.get("https://art-academy-server.vercel.app/payments").then((res) => {
       setPayments(res.data);
       console.log(res.data);
       setLoading(false);
@@ -21,14 +21,14 @@ const PaymentHistory = () => {
   }
 
   return (
-    <div>
+    <div className="mx-4">
       <h1 className="text-2xl font-semibold text-center text-amber-600 mb-8">
         Payment History
       </h1>
-      <div className="overflow-x-auto border border-amber-600 rounded-md mb-4">
+      <div className="overflow-x-auto border border-amber-900 rounded-md mb-4">
         <table className="table table-zebra">
           {/* head */}
-          <thead>
+          <thead className="bg-amber-900 text-white">
             <tr>
               <th>No.</th>
               <th>Course</th>
@@ -42,7 +42,7 @@ const PaymentHistory = () => {
             {payments.map((payment, index) => (
               <tr key={payment._id}>
                 <th>{index + 1}</th>
-                <td>{payment?.courses?.[1]}</td>
+                <td>{payment?.courses?.[0]}</td>
                 <td>{payment.price}</td>
                 <td>{payment.transactionId}</td>
                 <td className="text-right">{payment.quantity}</td>

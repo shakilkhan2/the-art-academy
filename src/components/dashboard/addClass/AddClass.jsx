@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/authProvider/AuthProvider";
 import { toast } from "react-hot-toast";
+import { fromJSON } from "postcss";
+import { useNavigate } from "react-router-dom";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddClass = () => {
+  const navigate = useNavigate();
   // const [axiosSecure] = useAxiosSecure();
   // const img_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
   // const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${img_hosting_token}`
@@ -19,6 +22,7 @@ const AddClass = () => {
     const email = form.email.value;
     const price = parseFloat(form.price.value);
     const seat = parseFloat(form.seat.value);
+    const about = form.about.value;
     const classInfo = {
       className: name,
       photo: photo,
@@ -26,10 +30,12 @@ const AddClass = () => {
       instructorEmail: email,
       price: price,
       seat: seat,
+      status: "pending",
+      about: about,
     };
     console.log(classInfo);
 
-    fetch("http://localhost:5000/added_class", {
+    fetch("https://art-academy-server.vercel.app/added_class", {
       method: "POST",
 
       headers: {
@@ -41,6 +47,7 @@ const AddClass = () => {
       .then((data) => {
         if (data.insertedId) {
           toast.success("Class added successfully!");
+          navigate("/dashboard/my_classes");
         } else {
           toast.error("Failed to add class.");
           form.reset();
@@ -73,7 +80,7 @@ const AddClass = () => {
             className="mx-auto pl-2 py-3 w-[45%] my-6 border rounded-lg border-amber-500"
             type="text"
             name="photo"
-            defaultValue="https://img.freepik.com/free-photo/boy-standing-table-drawing-looking-camera_259150-59573.jpg?w=740&t=st=1686400190~exp=1686400790~hmac=81d24b99867910b43b7f2bf852448f804dcc4b4f8cfb71af89170576c2305053"
+            defaultValue="https://img.freepik.com/free-photo/close-up-oil-paints-brushes-palette_176420-2827.jpg?w=740&t=st=1686559405~exp=1686560005~hmac=114c452eb8827b84a3e95ebf2219d1682f7f1e5bb93bb584f23cfbf06b389d6c"
             placeholder="photo url"
             id=""
           />
@@ -116,6 +123,17 @@ const AddClass = () => {
             placeholder="$price"
             required
           />
+        </div>
+        <div className=" flex justify-between">
+          <textarea
+            className=" mx-auto pl-2 py-3 w-[95%] mt-6 border rounded-lg border-amber-500"
+            type="text"
+            placeholder="description"
+            name="about"
+            id=""
+            cols="20"
+            rows="5"
+          ></textarea>
         </div>
         <div className="">
           <button className="w-[95%] ms-6 text-center border rounded-lg  px-8 py-3 mt-8 font-semibold text-white bg-amber-500 hover:bg-amber-400">

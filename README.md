@@ -16,3 +16,9 @@ Welcome to The Art Academy, your gateway to unlocking your artistic potential.
 
  ## 🔗Site Link
   https://the-art-academy.web.app/
+
+  ## Used Tools & Technologies
+
+**Client:** React, JS, TailwindCSS, Daisy ui, React router, axios, react query, firebase, mongoDB
+
+**Server:** Node, Express, vercel
